@@ -9,10 +9,34 @@ public class CalculatorBean {
     private double inputNumber1;
     private double inputNumber2;
     private double result;
-    private char chosenOperator;
+    private char chosenOperator = '\0';
 
 
     // Operations
+    public void doOperation() {
+        switch (getChosenOperator()) {
+            case '+':
+                setResult(getInputNumber1() + getInputNumber2());
+                break;
+            case '-':
+                setResult(getInputNumber1() - getInputNumber2());
+                break;
+            case '*':
+                setResult(getInputNumber1() * getInputNumber2());
+                break;
+            case '/':
+                setResult(getInputNumber1() / getInputNumber2());
+                break;
+            default:
+                break;
+        }
+    }
+    public void clearValues(){
+        setInputNumber1(0);
+        setInputNumber2(0);
+        setChosenOperator('\0');
+        setResult(0);
+    }
 
     // Set
     public void setInputNumber1(double inputNumber1) {
@@ -49,6 +73,11 @@ public class CalculatorBean {
     }
 
     public String showResult() {
-        return "result: " + getInputNumber1() +" "+ getInputNumber2();
+        if (getChosenOperator() != '\0') {
+            doOperation();
+            return "result for: " + getInputNumber1() + " " + getChosenOperator() + " " + getInputNumber2() + " is: " + getResult();
+        } else {
+            return "";
+        }
     }
 }

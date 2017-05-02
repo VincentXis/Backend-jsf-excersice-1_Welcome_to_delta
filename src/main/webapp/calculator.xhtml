@@ -4,7 +4,8 @@
 <html lang="en"
       xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:p="http://primefaces.org/ui">
+      xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
 
 <h:head>
     <title>Hello</title>
@@ -22,7 +23,15 @@
                     <br/>
                     <p:inputText value="#{calculatorBean.inputNumber2}"/>
                     <br/>
+                    <p:selectOneRadio value="#{calculatorBean.chosenOperator}">
+                        <f:selectItem itemLabel="Add" itemValue="+"/>
+                        <f:selectItem itemLabel="Subtract" itemValue="-"/>
+                        <f:selectItem itemLabel="Multiply" itemValue="*"/>
+                        <f:selectItem itemLabel="Divide" itemValue="/"/>
+                    </p:selectOneRadio>
                     <p:commandButton value="submit" type="submit"/>
+                    <p:commandButton value="clear" type="submit" actionListener="#{calculatorBean.clearValues()}"/>
+                    <br/>
                     <br/>
                     <p:outputLabel value="#{calculatorBean.showResult()}"/>
                 </h:form>
